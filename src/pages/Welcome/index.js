@@ -1,3 +1,4 @@
+import { StatusBar } from 'react-native';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity  } from 'react-native';
 
@@ -10,6 +11,7 @@ export default function Welcome() {
 
  return (
    <View style={styles.container}>
+      <StatusBar backgroundColor='#26333B' barStyle="light-content" />
 
         <View style={styles.containerLogo}>
         <Animatable.Image
@@ -26,7 +28,7 @@ export default function Welcome() {
 
         <TouchableOpacity
         style={styles.button}
-        onPress={ () => navigation.navigate('Login')}   //Mudar para Login depois 
+        onPress={ () => navigation.navigate('Login')}   
         >
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
@@ -39,17 +41,17 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor: '#050107'        //Trocar a cor para a da empresa
+    backgroundColor: '#26333B'        
   },
   containerLogo:{
     flex:1,
-    backgroundColor: '#050107',        //trocar a cor para a da empresa
+    backgroundColor: '#26333B',        
     justifyContent: 'center',
     alignItems: 'center'
   },
   containerForm:{
     flex:1,
-    backgroundColor: '#050107',          //trocar cor para a da empresa
+    backgroundColor: '#26333B',          //trocar cor para a da empresa
     paddingStart: '5%',
     paddingEnd: '5%',
     justifyContent: 'top'
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
   },
   button:{
     position: 'absolute',
-    backgroundColor: '#fb0601',
+    backgroundColor: '#FF5757',
     borderRadius: 50,
     paddingVertical: 8,
     width: '60%',

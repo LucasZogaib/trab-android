@@ -7,6 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import { useNavigation} from '@react-navigation/native'
 
 export default function App() {
+  const navigation = useNavigation();
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -20,7 +21,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor='#050107' barStyle="light-content" />
+      <StatusBar backgroundColor='#26333B' barStyle="light-content" />
 
       <Animatable.Image
       animation="fadeInDown"
@@ -46,6 +47,18 @@ export default function App() {
       onPress={()=>cadastro()}> 
         <Text style={{color:'white', textAlign:'center'}}>CADASTRAR!</Text>
       </TouchableOpacity>
+
+      <View style={styles.bottomContainer}>
+        <Text
+          style={styles.goLog}>Já tem uma conta?</Text>
+
+          <TouchableOpacity
+          style={styles.goLogButton}
+          onPress={ () => navigation.navigate('Login')}
+          >
+            <Text style={styles.goLogText}>    Entre Agora!</Text>
+          </TouchableOpacity>
+      </View>
     </View> 
   );
 }
@@ -53,7 +66,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#050107',
+    backgroundColor: '#26333B',
     alignItems: 'center',
     justifyContent: 'center',
     padding:20
@@ -69,8 +82,19 @@ const styles = StyleSheet.create({
   btnCadastro:{
     width:'100%',
     height:40,
-    backgroundColor:'#fb0601',
+    backgroundColor:'#FF5757',
     borderRadius:20,
     justifyContent:'center'
+  },
+  bottomContainer:{
+    flexDirection:'row',
+    top:'10%'
+  },
+  goLog:{
+    color: '#ffffff'
+  },
+  goLogText:{
+    color: '#ffffff',
+    fontWeight: 'bold',
   }
 });

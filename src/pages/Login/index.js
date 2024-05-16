@@ -21,7 +21,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor='#050107' barStyle="light-content" />
+      <StatusBar backgroundColor='#26333B' barStyle="light-content" />
 
       <Animatable.Image
       animation="fadeInDown"
@@ -38,8 +38,10 @@ export default function Login() {
       style={styles.TextInput} 
       onChange={text=>setSenha(text)} />
 
-      <TouchableOpacity style={styles.btnLogin} 
-      onPress={()=>cadastro()}> 
+      <TouchableOpacity 
+        style={styles.btnLogin} 
+        onPress={ () => navigation.navigate('Cardapio')}
+      > 
         <Text style={{color:'white', textAlign:'center'}}>Login</Text>
       </TouchableOpacity>
       
@@ -52,7 +54,6 @@ export default function Login() {
         onPress={ () => navigation.navigate('Register')}
         >
           <Text style={styles.goRegText}>Cadastre-se!</Text>
-
         </TouchableOpacity>
         </View>
     </View> 
@@ -64,7 +65,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#050107',
+    backgroundColor: '#26333B',
     alignItems: 'center',
     justifyContent: 'center',
     padding:20
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   btnLogin:{
     width:'100%',
     height:40,
-    backgroundColor:'#fb0601',
+    backgroundColor:'#FF5757',
     borderRadius:20,
     justifyContent:'center'
   },
