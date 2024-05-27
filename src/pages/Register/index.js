@@ -1,4 +1,4 @@
-import { StatusBar } from 'react-native';
+import { StatusBar, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
@@ -9,15 +9,59 @@ import { useNavigation} from '@react-navigation/native'
 export default function App() {
   const navigation = useNavigation();
 
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [senha, setSenha] = useState('')
 
-  const cadastro = () => {
-    //Fazer chamada no back-end para cadastro.
-    //Descobrir como limito CPF para apenas números
-  }
+
+  const handleCpfChange = (text) => {
+    const numericText = text.replace(/\D/g, '');
+    setCpf(numericText);
+  };
+
+  const cadastro = async () => {
+    const data = {
+      nome,
+      email,
+      cpf,
+      senha
+    }
+      console.log(data);
+  
+    if (nome === '' || email === '' || cpf === '' || senha === '') {
+      Alert.alert('Erro', 'Todos os campos são obrigatórios');
+      return;
+    }
+
+    try {
+      const response = await fetch('https://seu-backend.com/api/cadastro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome,
+          email,
+          cpf,
+          senha,
+        }),
+      });
+
+      const data = await response.json();
+      
+
+      if (response.ok) {
+        Alert.alert('Sucesso', 'Cadastro realizado com sucesso');
+        navigation.navigate('Login');
+      } else {
+        Alert.alert('Erro', data.message || 'Houve um problema no cadastro');
+      }
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível realizar o cadastro');
+    }
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -29,19 +73,36 @@ export default function App() {
       style={{width:400,height:400}} 
       />
 
-      <TextInput required="required" 
-      placeholder="Seu nome..." style={styles.TextInput} 
-      onChange={text=>setNome(text)} />
-      <TextInput required="required" 
-      placeholder="Seu e-mail..." style={styles.TextInput} 
-      onChange={text=>setEmail(text)} />
-      <TextInput required="required" maxLength={11} 
-      placeholder="Seu CPF..." style={styles.TextInput} 
-      onChange={text=>setCpf(text)} /> 
-      <TextInput required="required" 
-      secureTextEntry={true} placeholder="Sua senha..." 
+      <TextInput 
+      required="required" 
+      placeholder="Seu nome..." 
       style={styles.TextInput} 
-      onChange={text=>setSenha(text)} />
+      onChangeText={setNome} 
+      value={nome} />
+      
+      <TextInput 
+      required="required" 
+      placeholder="Seu e-mail..." 
+      style={styles.TextInput} 
+      onChangeText={setEmail} 
+      value={email} />
+      
+      <TextInput 
+      required="required" 
+      maxLength={11} 
+      placeholder="Seu CPF..." 
+      style={styles.TextInput}
+      keyboardType="numeric"
+      onChangeText={handleCpfChange} 
+      value={cpf} /> 
+      
+      <TextInput 
+      required="required" 
+      secureTextEntry={true} 
+      placeholder="Sua senha..." 
+      style={styles.TextInput} 
+      onChangeText={setSenha}
+      value={senha} />
 
       <TouchableOpacity style={styles.btnCadastro} 
       onPress={()=>cadastro()}> 

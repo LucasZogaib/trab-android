@@ -3,7 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Welcome from '../pages/Welcome'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import Home from '../pages/Cardapio'
+import Cardapio from '../pages/Cardapio'
+import Home from '../pages/Home' 
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,12 @@ export default function Routes(){
 
             <Stack.Screen
             name='Cardapio'
+            component={Cardapio}
+            options={{ headerShown: false}}
+            />
+
+            <Stack.Screen
+            name='Home'
             component={Home}
             options={{ headerShown: false}}
             />

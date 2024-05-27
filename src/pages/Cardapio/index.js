@@ -2,6 +2,7 @@ import { StatusBar } from 'react-native';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { Ionicons } from '@expo/vector-icons';
 
 import * as Animatable from 'react-native-animatable';
 
@@ -15,8 +16,13 @@ export default function Cardapio() {
       <StatusBar backgroundColor='#26333B' barStyle="light-content" />
 
       <TouchableOpacity style={styles.btnHome} 
+      onPress={() => navigation.navigate('Home')}>
+      <Text style={styles.voltarButton}><AntDesign name="back" size={12} color="white" />  HOME</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.btnLogOut}
       onPress={()=>Home()}>
-      <Text style={styles.voltarButton}><AntDesign name="back" size={12} color="white" />  VOLTAR PARA HOME</Text>
+      <Ionicons name="log-out-outline" size={18} color="white" />
       </TouchableOpacity>
 
       <Text style={styles.titulo}>CARDÁPIO</Text>
@@ -122,5 +128,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     top: '15%',
     textAlign: 'center'
+  },
+  btnLogOut: {
+    position: 'absolute',
+    right: 20,
+    top: 20
   },
 });

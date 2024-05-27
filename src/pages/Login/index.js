@@ -9,15 +9,6 @@ import { useNavigation} from '@react-navigation/native'
 export default function Login() {
   const navigation = useNavigation();
 
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [senha, setSenha] = useState('');
-
-  const cadastro = () => {
-    //Fazer chamada no back-end para cadastro.
-    //Descobrir como limito CPF para apenas números
-  }
 
   return (
     <View style={styles.container}>
@@ -40,7 +31,7 @@ export default function Login() {
 
       <TouchableOpacity 
         style={styles.btnLogin} 
-        onPress={ () => navigation.navigate('Cardapio')}
+        onPress={ () => navigation.navigate('Home')}
       > 
         <Text style={{color:'white', textAlign:'center'}}>Login</Text>
       </TouchableOpacity>
